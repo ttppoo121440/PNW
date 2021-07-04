@@ -54,10 +54,8 @@
               <div>{{item.serial_number}}</div>
               <div>{{item.qty}} 個</div>
               <div><span class="badge badge-dark">{{item.size}}</span></div>
+              <div v-show="item.memo">{{item.memo}}</div>
             </td>
-            <!-- <td>{{item.size}}</td> -->
-            <!-- <td>{{item.qty}}</td> -->
-            <!-- <td>{{item.memo}}</td> -->
             <td>
               <button
                 type="button"
