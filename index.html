@@ -42,23 +42,26 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th width="68">日期</th>
-            <th width="100">編號</th>
-            <th width="47">數量</th>
-            <!-- <th>備註</th> -->
-            <th width="58">操作</th>
+            <th width="90">日期</th>
+            <th width="150">規格</th>
+            <th width="60">操作</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="item in dataFilter" :key="item.serial_number">
             <td>{{item.date}}</td>
-            <td>{{item.serial_number}}</td>
-            <td>{{item.qty}}</td>
+            <td>
+              <div>{{item.serial_number}}</div>
+              <div>{{item.qty}} 個</div>
+              <div><span class="badge badge-dark">{{item.size}}</span></div>
+            </td>
+            <!-- <td>{{item.size}}</td> -->
+            <!-- <td>{{item.qty}}</td> -->
             <!-- <td>{{item.memo}}</td> -->
             <td>
               <button
                 type="button"
-                class="btn btn-warning btn-sm"
+                class="btn btn-warning btn-sm mb-3"
                 @click="openModal({type:'edit',item})"
               >
                 修改
@@ -129,6 +132,21 @@
                       aria-describedby="emailHelp"
                       v-model="formData.data.qty"
                     />
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleFormControlSelect1">尺碼</label>
+                    <select class="form-control" id="exampleFormControlSelect1" v-model="formData.data.size">
+                      <option value="XS">XS</option>
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
+                      <option value="2XL">2XL</option>
+                      <option value="3XL">3XL</option>
+                      <option value="4XL">4XL</option>
+                      <option value="5XL">5XL</option>
+                      <option value="7XL">7XL</option>
+                    </select>
                   </div>
                   <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label"
@@ -279,7 +297,7 @@
           const openDataHandler = (data) => {
             console.log(data)
             if (data.type === 'new') {
-              formData.data = Object.assign({}, { qty: 1 })
+              formData.data = Object.assign({}, { qty: 1,size:'S' })
             } else {
               formData.data = Object.assign({}, data.item)
             }
@@ -305,6 +323,7 @@
                   {
                     date: formatDate(date),
                     serial_number: formData.data.serial_number.toUpperCase(),
+                    size: formData.data.size,
                     qty: formData.data.qty,
                     memo: formData.data.memo,
                   }
