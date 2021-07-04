@@ -16,8 +16,8 @@
   <body>
     <div id="app">
       <loading v-model:active="visible" :can-cancel="true"></loading>
-      <div class="my-5">
-        <h1 class="text-center">總數：{{data.length}}</h1>
+      <div class="my-1">
+        <h5 class="text-center">總數：{{data.length}}</h5>
       </div>
       <div class="input-group">
         <input
@@ -28,7 +28,7 @@
           v-model="search"
         />
         <button
-          class="btn btn-primary"
+          class="btn btn-primary btn-sm"
           type="button"
           id="button-addon2"
           data-toggle="modal"
@@ -42,11 +42,11 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th scope="col">日期</th>
-            <th scope="col">編號</th>
-            <th scope="col">數量</th>
-            <th scope="col">備註</th>
-            <th scope="col">操作</th>
+            <th width="68">日期</th>
+            <th width="100">編號</th>
+            <th width="47">數量</th>
+            <!-- <th>備註</th> -->
+            <th width="58">操作</th>
           </tr>
         </thead>
         <tbody>
@@ -54,18 +54,18 @@
             <td>{{item.date}}</td>
             <td>{{item.serial_number}}</td>
             <td>{{item.qty}}</td>
-            <td>{{item.memo}}</td>
+            <!-- <td>{{item.memo}}</td> -->
             <td>
               <button
                 type="button"
-                class="btn btn-warning"
+                class="btn btn-warning btn-sm"
                 @click="openModal({type:'edit',item})"
               >
                 修改
               </button>
               <button
                 type="button"
-                class="btn btn-danger"
+                class="btn btn-danger btn-sm"
                 @click="openModal({type:'del',item})"
               >
                 刪除
